@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
   # The Ansible controller machine
   config.vm.define :controller, primary: true do |controller|
     controller.vm.hostname = "ansible-controller"
-    controller.vm.network "private_network", ip: "192.168.98.100"
+    controller.vm.network "private_network", ip: "192.168.56.100"
 
     # Sync the local directory with ansible-friendly permissions
     controller.vm.synced_folder ".", "/vagrant",
@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
   (1..2).each do |i|
     config.vm.define "web-00#{i}" do |node|
       node.vm.hostname = "web-00#{i}"
-      node.vm.network "private_network", ip: "192.168.98.11#{i}"
+      node.vm.network "private_network", ip: "192.168.56.11#{i}"
     end
   end
 
@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
   (1..1).each do |i|
     config.vm.define "lb-00#{i}" do |node|
       node.vm.hostname = "lb-00#{i}"
-      node.vm.network "private_network", ip: "192.168.98.12#{i}"
+      node.vm.network "private_network", ip: "192.168.56.12#{i}"
     end
   end
 
@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
   (1..1).each do |i|
     config.vm.define "db-00#{i}" do |node|
       node.vm.hostname = "db-00#{i}"
-      node.vm.network "private_network", ip: "192.168.98.13#{i}"
+      node.vm.network "private_network", ip: "192.168.56.13#{i}"
     end
   end
 
@@ -78,5 +78,5 @@ Vagrant.configure("2") do |config|
     sed -i "s/^ENABLED=.*/ENABLED=0/" /etc/default/motd-news
   SHELL
 
-  config.vm.boot_timeout = 360
+  config.vm.boot_timeout = 240
 end
