@@ -1,0 +1,7 @@
+---
+
+webservers:
+  hosts:
+    web-001.local:
+    web-002.local:
+    status_url: "status"  
