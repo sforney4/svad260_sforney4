@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
 
 
   # Example web servers
-  (1..2).each do |i|
+  (1..4).each do |i|
     config.vm.define "web-00#{i}" do |node|
       node.vm.hostname = "web-00#{i}"
       node.vm.network "private_network", ip: "192.168.56.11#{i}"
@@ -78,5 +78,5 @@ Vagrant.configure("2") do |config|
     sed -i "s/^ENABLED=.*/ENABLED=0/" /etc/default/motd-news
   SHELL
 
-  config.vm.boot_timeout = 240
+  config.vm.boot_timeout = 720
 end
