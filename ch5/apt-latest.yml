@@ -12,6 +12,8 @@
       systemd:
         name: nginx
         state: started
+      check: true
+      register: nginx
 
     - name: Print current nginx start time
       debug:
@@ -26,6 +28,13 @@
         name: nginx
         state: latest
         update_cache: yes
+        
+    - name: Determine nginx start time 
+      systemd:
+        name: nginx
+        state: started
+      check: true
+      register: nginx    
 
     - name: Print current nginx start time
       debug:
