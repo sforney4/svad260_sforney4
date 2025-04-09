@@ -1,0 +1,8 @@
+---
+webservers:
+ hosts:
+  web-001.local:
+  web-002.local:
+
+ vars:
+  http_port: 8080
