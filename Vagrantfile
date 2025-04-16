@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
 
 
   # Example web servers
-  (1..4).each do |i|
+  (1..2).each do |i|
     config.vm.define "web-00#{i}" do |node|
       node.vm.hostname = "web-00#{i}"
       node.vm.network "private_network", ip: "192.168.56.11#{i}"
