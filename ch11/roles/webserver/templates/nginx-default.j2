@@ -1,0 +1,22 @@
+# force a config reload
+server {
+	listen {{ http_port }} default_server;
+
+	root /var/www/html;
+
+	#Use the default catch-all server name
+	server_name _;
+
+		{% if status_url is defined -%}
+		location /{{ status_url }} {
+			stub_status on;
+		}
+		{%- endif %}
+
+		index index.php index.html index.htm;
+
+		location ~\.php$ {
+			include snippets/fastcgi-php.conf;
+			fastcgi_pass unix:/var/run/php/php-fpm.sock;
+		}
+}
