@@ -1,5 +1,5 @@
 ---
-- name: Ensure mysql and python3-pymsyql are installed
+- name: Install MySQL
   apt:
     name: 
       - mysql-server 
@@ -15,17 +15,17 @@
     login_password: "{{ database.root_password }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock 
   no_log: True
-  
+
 - name: Create the wordpress database
-  mysql_db: 
-    name: "{{ database.name }}"    
+  mysql_db:
+    name: "{{ database.name }}"
     state: present
     login_user: root
-    login_password: "{{d atabase.root_password }}"
+    login_password: "{{ database.root_password }}"
 
 - name: Create the wordpress user 
   mysql_user:
-    name: "{{ database.name }}"
+    name: "{{ database.username }}"
     password: "{{ database.password }}"
     priv: "{{ database.name }}.*:ALL"
     host: "%"
@@ -33,17 +33,16 @@
     login_user: root
     login_password: "{{ database.root_password }}"
   no_log: True
-  
+
 - name: Ensure MySQL listens on the network
-  lineinfile: 
+  lineinfile:
     path: /etc/mysql/mysql.conf.d/mysqld.cnf 
-    regexp: '^bind-address'  
-    line: 'bind-address = 0.0.0.0'
+    regexp: '^bind-address'
+    line: 'bind-address = 0.0.0.0' 
   notify:
     - Restart MySQL
 
-
-- name: Firewall - Allow port 3306 connections
+- name: Firewall - Allow database 3306 connections
   ufw:
     rule: allow
     port: "3306"

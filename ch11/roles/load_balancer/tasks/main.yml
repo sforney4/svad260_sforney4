@@ -25,7 +25,7 @@
 - name: Setup backends
   template:
     src: backends.cfg.j2
-    dest: "/etc/haproxy/fragments/90_backends.cfg"    
+    dest: /etc/haproxy/fragments/90_backends.cfg    
 
 - name: Build configuration from fragments
   assemble: 

@@ -14,5 +14,4 @@
     dest: "/var/www/html/wordpress/wp-config.php"
     owner: root
     group: www-data
-    mode: 'u=rw,g=r,o='
-
+    mode: 'u=rw,g=r,o=r'

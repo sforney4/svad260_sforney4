@@ -1,4 +1,4 @@
 ---
 databases:
- hosts:
-  db-001.local:
+    hosts:
+        db-001.local:
