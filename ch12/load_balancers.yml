@@ -1,0 +1,7 @@
+---
+- hosts: load_balancers
+  become: true
+  tasks:
+    - name: Build load balancers
+      include_role:
+        name: load_balancer
